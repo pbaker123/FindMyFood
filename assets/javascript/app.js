@@ -8,3 +8,8 @@
     messagingSenderId: "811192802841"
   };
   firebase.initializeApp(config);
+
+  // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=[function-call]"
+    async defer></script>
