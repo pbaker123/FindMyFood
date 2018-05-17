@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Zomato API</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // Example queryURL for Yelp API
+    // can also use location
+    var cors = "https://cors-everywhere.herokuapp.com/"
+    var term = "restaurant";
+    var limit = 1;
+    var lattitude = 30.23;
+    var longitude = 97.78;
+    var radius = 50;
+    open_now = true;
+    var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + term + "&lat=" + lattitude + "&lon=" + longitude + "&radius=" + radius;
+
+     // "&limit=" + limit + "&lattitude=" + lattitude + "&longitude=" + longitude + "&radius=" + radius + "&open_now=" + open_now;
+    
+    var userKey = "39142c85645680f9baf52da3fb0a95f1";
+
+	$.ajax({  
+		url: queryURL,
+		dataType: 'json',
+		async: true,
+		beforeSend: function(xhr){xhr.setRequestHeader('user-key', 
+	'39142c85645680f9baf52da3fb0a95f1');},
+		success: function(response) { console.log(response) } })
+
+
+    .then(function(response) {
+      console.log(response);
+    });
+  </script>
+
+</body>
+
+</html>
+
+
