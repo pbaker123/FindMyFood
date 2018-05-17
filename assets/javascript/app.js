@@ -15,23 +15,21 @@
   // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
 
     function initMap() {
-
-
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
+          pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
           console.log(pos);
           $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
         }, function() {
-          handleLocationError(true, map.getCenter());
+          handleLocationError(true);
         });
       } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, map.getCenter());
+        handleLocationError(false);
       }
     }
 
