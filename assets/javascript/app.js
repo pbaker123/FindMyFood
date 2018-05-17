@@ -1,3 +1,6 @@
+  var pos;
+  
+  
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyD6x5BYfR2yV9_yS-pYsDZ8RrU7ef3U56o",
@@ -11,7 +14,6 @@
 
   // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
 
-
     function initMap() {
 
 
@@ -23,7 +25,7 @@
             lng: position.coords.longitude
           };
           console.log(pos);
-          $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lat);
+          $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
         }, function() {
           handleLocationError(true, map.getCenter());
         });
@@ -35,9 +37,3 @@
 
     var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
 
-    $(document).ready(function(){
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      });
-  });
