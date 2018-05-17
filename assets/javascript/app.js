@@ -13,8 +13,6 @@
 
 
     function initMap() {
-
-
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
@@ -23,13 +21,13 @@
             lng: position.coords.longitude
           };
           console.log(pos);
-          $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lat);
+          $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
         }, function() {
-          handleLocationError(true, map.getCenter());
+          handleLocationError(true);
         });
       } else {
         // Browser doesn't support Geolocation
-        handleLocationError(false, map.getCenter());
+        handleLocationError(false);
       }
     }
 
