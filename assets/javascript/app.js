@@ -12,6 +12,13 @@
   // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
   var pos = [];
   var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
+  
+  //types based on meters
+  var travelType = [{
+    "walk": 1609,
+    "bike": 4828,
+    "car": 16093
+  }];
 
     function initMap() {
       // Try HTML5 geolocation.
