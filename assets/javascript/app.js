@@ -10,13 +10,14 @@
   firebase.initializeApp(config);
 
   // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
-
+  var pos = [];
+  var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
 
     function initMap() {
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function(position) {
-          var pos = {
+          pos = {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
@@ -31,11 +32,8 @@
       }
     }
 
-    var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
-
+    console.log(pos);
+    
     $(document).ready(function(){
-      $.ajax({
-        url: queryURL,
-        method: "GET"
-      });
+    
   });
