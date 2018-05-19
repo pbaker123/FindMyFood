@@ -1,3 +1,9 @@
+body {
+    background-image: url(images/congruent_pentagon/congruent_pentagon.png);
+    font-family: 'Rubik', sans-serif;
+
+}
+
 #buttonRow {
     border: solid 1px black;
     margin: 10px;
@@ -79,10 +85,21 @@ button {
       font-weight: bolder;
       background-image: url(images/food.jpg);
       color: white;
-      text-shadow: 4px 2px 4px #000000;
+      text-shadow: 4px 2px #000000;
+      font-family: 'Anton', sans-serif;
+      letter-spacing: 2px;
   }
 
-  body {
-      background-image: url(images/congruent_pentagon/congruent_pentagon.png);
+  .my {
+      position: relative;
+      font-size: 90px;
+      top: 10px;
   }
+
+  img {
+      height: 300px;
+      width: 250px;
+  }
+
+
 

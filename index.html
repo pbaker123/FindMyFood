@@ -6,22 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Find My Food</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-
-
+    <link href="https://fonts.googleapis.com/css?family=Anton|Rubik" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/test.js"></script>
 </head>
 <body>
         <div class="jumbotron jumbotron-fluid">
                 <div class="container">
-                  <h1 class="display-4 header">Find My Food</h1>
+                  <h1 class="display-4 header">Find   <span class="my">My</span>   Food</h1>
                 </div>
               </div>
-    <div class="container">
+    <div class="container" id="instructions">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h4>Welcome to Find My Food.</h4>
+                <p>The app for people who just can't decide what to eat</p>
+                <p>First the app will grab your location.</p>
+                <p>Next, will need to select your mode of transportation: Walking, Biking, or Driving.</p>
+                <p>Find My Food will then show you where you are going to eat your next meal.</p>
+                <button class="btn btn-primary" id="start">Find My Food</button>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8" id="icons">
@@ -38,17 +52,12 @@
                 </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                    <div id="location"></div>
-            </div>
-            <div class="col-md-2"></div>
-        </div>
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div id="restaurantChoice">This is your restaurant</div>
+                <div id="restaurantChoice"><img src="assets/css/images/example.png"></div>
+                
             </div>
             <div class="col-md-2"></div>
         </div>
