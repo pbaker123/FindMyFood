@@ -1,8 +1,10 @@
 var page = 1;
 var rated;
 var use;
+
 $( document ).ready( function () {
     console.log( "ready!" );
+    $( "#restaurantChoice" ).hide();
 
 
     // $( "#loadingSplash" ).hide();
@@ -22,8 +24,9 @@ $( document ).ready( function () {
 
     } );
 
-    $( "#iconPage" ).on( "click", function () {
-        page3();
+    $( ".content" ).on( "click", function () {
+        hideAll();
+        setTimeout(page3,100);
     } );
 } );
 
@@ -40,7 +43,7 @@ function page3() {
     $( ".jumbotron" ).show();
     $( "#loadingSplash" ).hide();
     $( "#iconPage" ).hide();
-    $( "#pageChoice" ).show();
+    $( "#restaurantChoice" ).show();
 }
 function page2() {
 
@@ -49,5 +52,6 @@ function page2() {
     console.log( "start pressed" );
     page++;
     $( "#instructions" ).hide();
-    $( "#iconPage" ).show();
+    $( "#pageChoice" ).show();
+    $("#restaurantChoice").hide();
 }
