@@ -1,28 +1,38 @@
-var page=1;
-var rated; 
+var page = 1;
+var rated;
 var use;
-$( document ).ready(function() {
+$( document ).ready( function () {
     console.log( "ready!" );
 
 
-$("#loadingSplash").hide();
-$("#iconPage").hide();
-$("#page3").hide();
-$("#instructions").show();
+    $( "#loadingSplash" ).hide();
+    $( "#iconPage" ).hide();
+    $( "#pageChoice" ).hide();
+    $( "#instructions" ).show();
 
 
-console.log("UI engaged");
+    console.log( "UI engaged" );
 
 
-$("#start").on("click", function(){
-    console.log("start pressed");
+    $( "#start" ).on( "click", function () {
+        page2();
+
+    } );
+
+    $( "#iconPage" ).on( "click", function () {
+        page3();
+    } );
+} );
+
+function page3() {
+    $("#loadingSplash").hide();
+    $( "#iconPage" ).hide();
+    $( "#pageChoice" ).show();
+}
+function page2() {
+    $("#loadingSplash").hide();
+    console.log( "start pressed" );
     page++;
-    $("#instructions").hide();
-    $("#iconPage").show();
-});
-
-$("#iconPage").on("click", function(){
-    $("#iconPage").hide();
-    $("#page3").show();
-});
-});
+    $( "#instructions" ).hide();
+    $( "#iconPage" ).show();
+}
