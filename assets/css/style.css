@@ -76,8 +76,13 @@ button {
       
   }
   .jumbotron {
+      font-weight: bolder;
       background-image: url(images/food.jpg);
       color: white;
-      text-shadow: 2px 2px 4px #000000;
+      text-shadow: 4px 2px 4px #000000;
+  }
+
+  body {
+      background-image: url(images/congruent_pentagon/congruent_pentagon.png);
   }
 
