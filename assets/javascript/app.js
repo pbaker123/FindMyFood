@@ -23,6 +23,7 @@
             lat: position.coords.latitude,
             lng: position.coords.longitude
           };
+          weather()
           //console.log(pos);
           $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
           
