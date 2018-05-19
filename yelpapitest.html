@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Zomato API</title>
+  <title>Yelp API</title>
 </head>
 
 <body>
@@ -11,6 +11,61 @@
   <script type="text/javascript">
     // Example queryURL for Yelp API
     // can also use location
+<<<<<<< HEAD
+  //   var cors = "https://cors-everywhere.herokuapp.com/"
+  //   var term = "restaurant";
+  //   var limit = 1;
+  //   var lattitude = 30.23;
+  //   var longitude = 97.78;
+  //   var radius = 50;
+  //   open_now = true;
+  //   var queryURL = "https://api.yelp.com/v3/businesses/search?term=deli"
+
+  //    // "&limit=" + limit + "&lattitude=" + lattitude + "&longitude=" + longitude + "&radius=" + radius + "&open_now=" + open_now;
+  //   var clientId = "LUcQZXNdSO5zcP7dhlLBPQ";
+  //   var apiKey = "eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx";
+
+  //   $.ajax({
+  //     url: cors + queryURL,
+  //     method: "GET",
+  //     beforeSend: function (xhr) {
+  //   	xhr.setRequestHeader('Authorization', 'Bearer eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx');
+		// },
+		
+	
+  //   }).then(function(response) {
+  //     console.log(response);
+  //   });
+fetch('https://api.yelp.com/oauth2/token?client_id=LUcQZXNdSO5zcP7dhlLBPQ&client_secret=eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: JSON.stringify({
+    grant_type: 'client_credentials',
+  })
+})
+  .then((res) => res.json())
+  .then((resJSON) => {
+    this.setState({ access_token: resJSON.access_token });
+    console.log(resJSON)
+  })
+  .then(() => {
+    fetch('https://api.yelp.com/v3/businesses/search?location=12345', {
+      method: 'GET',
+      headers: {
+        'authorization': 'Bearer ' + this.state.access_token
+      }
+    })
+    .then((res) => res.json())
+    .then((resJSON) => {
+      console.log('resJSON', resJSON)
+    })
+  })
+  .catch((err) => {
+    console.log('err', err);
+  })
+=======
     var cors = "https://cors-everywhere.herokuapp.com/"
     var term = "restaurant";
     var limit = 1;
@@ -36,6 +91,7 @@
     .then(function(response) {
       console.log(response);
     });
+>>>>>>> fdfcd38ad16f7a926d2cd24708556bf959b81535
   </script>
 
 </body>
