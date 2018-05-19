@@ -92,8 +92,31 @@ button {
 
   .my {
       position: relative;
-      font-size: 90px;
-      top: 10px;
+      font-size: 200%;
+      top: 15px;
+  }
+
+  .second {
+    position: relative;
+    font-size: 115%;
+    top: -2px;
+  }
+
+  .third {
+    position: relative;
+    font-size: 130%;
+    top: 0px;
+  }
+
+  .fourth {
+    position: relative;
+    font-size: 145%;
+    top: 4px;
+  }
+
+  .first {
+      position: relative;
+      top: -6px;
   }
 
   img {
