@@ -50,9 +50,6 @@
               getFood();
             }      
           });
-    
-          //var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=" + setRadius +"&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
-          //console.log(queryfoodURL);
 
         }, function() {
           handleLocationError(true);
@@ -60,12 +57,21 @@
       } else {
         // Browser doesn't support Geolocation
         handleLocationError(false);
-       
       }
     }
     
     function getFood (){
-      var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=" + setRadius +"&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
-      console.log(queryfoodURL);
+      //var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=" + setRadius +"&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
+      //console.log(queryfoodURL);
+
+        var params = {
+            radius : setRadius,
+            type : 'restaurant',
+            location : initMap(),
+            key : 'AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8'
+        };
+        var service = new google.maps.places.PlacesService();
+        service.textSearch(params);
+        console.log(service);
     }
     var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
