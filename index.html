@@ -43,22 +43,23 @@
     </div>
     <div class="container">
         <div class="row" id="instructions">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
+            <div class="col-md-3 col-lg-3"></div>
+            <div class="col-md-6 col-lg-6" id = "instructionsText">
                 <h4>Welcome to Find My Food.</h4>
                 <p>The app for people who just can't decide what to eat</p>
-                <p>First the app will grab your location.</p>
-                <p>Next, will need to select your mode of transportation: Walking, Biking, or Driving.</p>
-                <p>Find My Food will then show you where you are going to eat your next meal.</p>
-                <button class="btn btn-primary" value="button text" id="start">Find My Food</button>
+                <p>First, tell us your location.</p>
+                <p>Next, select your mode of transportation: Walking, Biking, or Driving.</p>
+                <p>Find My Food will then show you where to eat your next meal.</p>
+                <p>Bon apetit!</p>
+                <button class="btn btn-primary" value="button text" id="start">Find My Food!</button>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3 col-lg-3"></div>
         </div>
 
 
         <div class="row" id="iconPage">
 
-            <div class="col-md-12" id="icons">
+            <div class="col-md-12 col-lg-12" id="icons">
                 <div class="row" id="weather"></div>
 
                 <div class="row">
@@ -95,16 +96,7 @@
             <div class="col-md-2"></div>
         </div>
 
-        <div class="row" id="loadingSplash">
-
-            <div class="col-md-12" id="loading">
-                <div>
-
-                    <img id="loadGif" src="assets/css/images/loader-2_food.gif">
-
-                </div>
-            </div>
-        </div>
+        
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -113,6 +105,16 @@
         </div>
 
 
+    </div>
+    <div class="row" id="loadingSplash">
+
+        <div class="col-md-12" id="loading">
+            <div>
+
+                <img id="loadGif" src="assets/css/images/loader-2_food.gif">
+
+            </div>
+        </div>
     </div>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
         async defer></script>

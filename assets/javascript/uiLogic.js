@@ -18,7 +18,7 @@ $( document ).ready( function () {
         hideAll();
         $( "#loadingSplash" ).show();
         debugger;
-        setTimeout( page2, 3000 );
+        setTimeout( page2, 1000 );
 
     } );
 
@@ -37,7 +37,7 @@ function hideAll() {
 }
 
 function page3() {
-    $( "#jumbotron" ).show();
+    $( ".jumbotron" ).show();
     $( "#loadingSplash" ).hide();
     $( "#iconPage" ).hide();
     $( "#pageChoice" ).show();
@@ -45,7 +45,7 @@ function page3() {
 function page2() {
 
     $( "#loadingSplash" ).hide();
-    $( "#jumbotron" ).show();
+    $( ".jumbotron" ).show();
     console.log( "start pressed" );
     page++;
     $( "#instructions" ).hide();
