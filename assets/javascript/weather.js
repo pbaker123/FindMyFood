@@ -1,7 +1,7 @@
-var pos = {
-            lat: 35,
-            lng: 139
-          };
+// var pos = {
+//             lat: 35,
+//             lng: 139
+//           };
 
 var weather = function() {
 	var api_key = "2ff3fe9c5bf754ee9c37979fef2c77ae";
@@ -14,9 +14,8 @@ var weather = function() {
     }).then(function(response) {
         console.log(response);
         var weatherIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
-        console.log(weatherIcon)
+        var weatherDescription = response.weather[0].main;
+        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:120px"))
         
     });
 };
-
-weather()
