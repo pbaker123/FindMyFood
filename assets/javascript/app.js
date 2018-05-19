@@ -1,4 +1,5 @@
   var pos = [];
+  var setRadius;
   
   // Initialize Firebase
   var config = {
@@ -26,10 +27,31 @@
           $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
           
           // testing resturant pull with fixed radius
-          var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=1500&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
+          
           console.log(pos.lat);
           console.log(pos.lng);
-          console.log(queryfoodURL);
+          
+          $(".content").on("click", function(){
+            var mode = $(this).attr("data-mode");
+            if (mode == "walking"){
+              setRadius = 1609;
+              console.log(setRadius);
+              getFood();
+            }
+            else if (mode == "bicycle"){
+              setRadius = 8046;
+              console.log(setRadius);
+              getFood();
+            }
+            else if (mode == "car"){
+              setRadius = 16093;
+              console.log(setRadius);
+              getFood();
+            }      
+          });
+    
+          //var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=" + setRadius +"&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
+          //console.log(queryfoodURL);
 
         }, function() {
           handleLocationError(true);
@@ -41,4 +63,8 @@
       }
     }
     
+    function getFood (){
+      var queryfoodURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+ pos.lat +","+ pos.lng +"&radius=" + setRadius +"&type=restaurant&key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8"
+      console.log(queryfoodURL);
+    }
     var queryURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&callback=" + initMap() + "async defer";
