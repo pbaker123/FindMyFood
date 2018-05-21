@@ -22,7 +22,11 @@ text-align: center;
     margin: 10px;
 }
 
-
+iframe {
+    height: 100%;
+    width: 100%;
+    border: 0px;
+}
 
 #icons {
     display: flex;

@@ -64,22 +64,24 @@ function callback(results, status) {
     var restaurantName = results[index].name;
     var restaurantLocation = results[index].vicinity;
     console.log("Name: " + restaurantName + " | Location: " + restaurantLocation)
+    $("#restaurantName").text(restaurantName + " - " + restaurantLocation);
+    $("#restaurantMap").html("<iframe class='embed-responsive-item' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&q=" + restaurantLocation + "'</iframe>");
   }
 }
 
 $(".content").on("click", function(){
   var mode = $(this).attr("data-mode");
-  if (mode == "walking"){
+  if (mode === "walking"){
     setRadius = 1609;
     console.log(setRadius);
     getFood();
   }
-  else if (mode == "bicycle"){
+  else if (mode === "bicycle"){
     setRadius = 8046;
     console.log(setRadius);
     getFood();
   }
-  else if (mode == "car"){
+  else if (mode === "car"){
     setRadius = 16093;
     console.log(setRadius);
     getFood();
