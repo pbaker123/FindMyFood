@@ -38,8 +38,13 @@ text-align: center;
     display:fles;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;}
 
+iframe{
+    height: 100%;
+    width: 100%;
+    border: 0px;
+}
 
 }
 .icons {
