@@ -19,7 +19,6 @@ $( document ).ready( function () {
     $( "#start" ).on( "click", function () {
         hideAll();
         $( "#loadingSplash" ).show();
-        debugger;
         setTimeout( page2, 1000 );
 
     } );

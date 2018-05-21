@@ -3,6 +3,8 @@ var setRadius;
 var origin;
 var map;
 var infowindow;
+var previousRestaurantId;
+var previousRestaurantName;
   
 // Initialize Firebase
 var config = {
@@ -19,27 +21,32 @@ firebase.initializeApp(config);
 // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
 
 function initMap() {
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      origin = position;
-      console.log(origin)
-      pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      weather()
-      $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
-      console.log(pos.lat);
-      console.log(pos.lng);
-    }, function() {
-      handleLocationError(true);
-    });
+  // if id exists in local storage do vote() else
+  if (localStorage.getItem("id") != "") {
+    vote()
   } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false);
+    // Try HTML5 geolocation.
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        origin = position;
+        console.log(origin)
+        pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        weather()
+        $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
+        console.log(pos.lat);
+        console.log(pos.lng);
+      }, function() {
+        handleLocationError(true);
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false);
+    }
   }
-}
+};
     
 function getFood() {
   var origin = {lat: pos.lat, lng: pos.lng};
@@ -56,16 +63,58 @@ function getFood() {
     radius: setRadius,
     type: ['restaurant']
   }, callback);
-}
+};
 
 function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     var index = Math.floor(Math.random() * results.length);
     var restaurantName = results[index].name;
     var restaurantLocation = results[index].vicinity;
+    var currentRestaurantId = results[index].id;
+    var currentRestaurantName = results[index].name;
+    localStorage.setItem("id", currentRestaurantId);
+    localStorage.setItem("name", currentRestaurantName);
     console.log("Name: " + restaurantName + " | Location: " + restaurantLocation)
+    console.log(results[index])
   }
-}
+};
+
+function vote() {
+  previousRestaurantId = localStorage.getItem("id");
+  previousRestaurantName = localStorage.getItem("name");
+  localStorage.setItem("id", "");
+  localStorage.setItem("name", "");
+  console.log("previous: " + previousRestaurantName)
+  idLookUp()
+};
+
+function idLookUp () {
+
+  // hide whatever, and show vote screen
+};
+
+// on click { if thumbs up make object {id, name, thumbs up, thumbs down} send this object to firebase, if it already exists get the number of thumbs up/down and increase the approriate one. if thumbs down __ else } 
+
+$(".vote").on("click", function() {
+  var vote = $(this).attr("data-mode");
+  if (vote === "thumbs-up") {
+    var voted = {
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsUp: thumbsUpTotal
+    };
+    initMap()
+  } else if (vote === "thumbs-down") {
+    var voted = {
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsDown: thumbsDownTotal
+    };
+    initMap()
+  } else {
+    initMap()
+  }
+});
 
 $(".content").on("click", function(){
   var mode = $(this).attr("data-mode");
