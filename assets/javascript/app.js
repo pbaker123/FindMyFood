@@ -29,7 +29,7 @@ function initMap() {
         lng: position.coords.longitude
       };
       weather()
-      $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
+      // $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
       console.log(pos.lat);
       console.log(pos.lng);
     }, function() {
@@ -63,7 +63,10 @@ function callback(results, status) {
     var index = Math.floor(Math.random() * results.length);
     var restaurantName = results[index].name;
     var restaurantLocation = results[index].vicinity;
-    console.log("Name: " + restaurantName + " | Location: " + restaurantLocation)
+    console.log("Name: " + restaurantName + " | Location: " + restaurantLocation);
+    $( "#restaurantName").html(restaurantName);
+    $( "#location").html(restaurantLocation);
+
   }
 }
 
