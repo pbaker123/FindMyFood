@@ -5,6 +5,9 @@ var map;
 var infowindow;
 var previousRestaurantId;
 var previousRestaurantName;
+var workingSnapshot;
+var thumbsUpTotal = 0;
+var thumbsDownTotal = 0;
   
 // Initialize Firebase
 var config = {
@@ -35,9 +38,9 @@ function initMap() {
           lng: position.coords.longitude
         };
         weather()
-        $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
-        console.log(pos.lat);
-        console.log(pos.lng);
+        // $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
+        // console.log(pos.lat);
+        // console.log(pos.lng);
       }, function() {
         handleLocationError(true);
       });
@@ -90,16 +93,22 @@ function vote() {
   idLookUp()
 };
 
-function idLookUp () {
 
-  // hide whatever, and show vote screen
-};
+
+
 
 // on click { if thumbs up make object {id, name, thumbs up, thumbs down} send this object to firebase, if it already exists get the number of thumbs up/down and increase the approriate one. if thumbs down __ else } 
 
+database.ref().on("value", function(snapshot) {
+  workingSnapshot = snapshot.val();
+  console.log(workingSnapshot)
+});
+
 $(".vote").on("click", function() {
   var vote = $(this).attr("data-mode");
+
   if (vote === "thumbs-up") {
+    thumbsUpTotal++;
     var voted = {
       id: previousRestaurantId,
       name: previousRestaurantName,
@@ -107,6 +116,7 @@ $(".vote").on("click", function() {
     };
     initMap()
   } else if (vote === "thumbs-down") {
+    thumbsUpTotal
     var voted = {
       id: previousRestaurantId,
       name: previousRestaurantName,
