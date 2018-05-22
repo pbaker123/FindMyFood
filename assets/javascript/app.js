@@ -35,7 +35,7 @@ function initMap() {
           lng: position.coords.longitude
         };
         weather()
-        $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
+        // $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
         console.log(pos.lat);
         console.log(pos.lng);
       }, function() {
