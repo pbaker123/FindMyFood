@@ -13,9 +13,9 @@ var weather = function() {
         method: "GET"
     }).then(function(response) {
         console.log(response);
-        var weatherIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+        var weatherIcon = "assets/images/" + response.weather[0].icon + ".png";
         var weatherDescription = response.weather[0].main;
-        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:120px"))
+        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:100px"))
         
     });
 };

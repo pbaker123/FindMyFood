@@ -98,13 +98,7 @@ function vote() {
   console.log("previous: " + previousRestaurantName)
   hideAll()
   $("#thumbs").show();
-  
-  // hide other divs
-  // show vote div
 };
-
-
-
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")
