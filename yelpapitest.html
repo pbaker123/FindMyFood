@@ -7,91 +7,82 @@
 </head>
 
 <body>
+
+<form>
+  <input class="form-control" id="id-input" type="text">
+  <button class="btn btn-primary" id="submit-bid" type="submit">Submit</button>
+
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.0.3/firebase.js"></script>
   <script type="text/javascript">
-    // Example queryURL for Yelp API
-    // can also use location
-<<<<<<< HEAD
-  //   var cors = "https://cors-everywhere.herokuapp.com/"
-  //   var term = "restaurant";
-  //   var limit = 1;
-  //   var lattitude = 30.23;
-  //   var longitude = 97.78;
-  //   var radius = 50;
-  //   open_now = true;
-  //   var queryURL = "https://api.yelp.com/v3/businesses/search?term=deli"
+  // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDxMTVS9dBDyDShgWN2-GblaqwsHCsSfBs",
+      authDomain: "test-4e350.firebaseapp.com",
+      databaseURL: "https://test-4e350.firebaseio.com",
+      projectId: "test-4e350",
+      storageBucket: "test-4e350.appspot.com",
+      messagingSenderId: "934970065219"
+    };
+    firebase.initializeApp(config);
+    var database = firebase.database();
+    var restaurants = firebase.database().ref("restaurant/");
+    var found = firebase.database().ref("restaurant/" + key);
+    var id = "";
+    var key;
+    var content;
 
-  //    // "&limit=" + limit + "&lattitude=" + lattitude + "&longitude=" + longitude + "&radius=" + radius + "&open_now=" + open_now;
-  //   var clientId = "LUcQZXNdSO5zcP7dhlLBPQ";
-  //   var apiKey = "eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx";
-
-  //   $.ajax({
-  //     url: cors + queryURL,
-  //     method: "GET",
-  //     beforeSend: function (xhr) {
-  //   	xhr.setRequestHeader('Authorization', 'Bearer eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx');
-		// },
-		
-	
-  //   }).then(function(response) {
-  //     console.log(response);
-  //   });
-fetch('https://api.yelp.com/oauth2/token?client_id=LUcQZXNdSO5zcP7dhlLBPQ&client_secret=eZK0fc2JBVDjc6mGUvCA-l4MdHR3ZI1xqVkdBZfNAIBO4mSSsbpBpDdn0qjej0csTZiv2PQ-FvAJQD3Xz7J1YwGJalmTbevmoHrCKJcXDKH8nEjdd0cF39A3Mb_8WnYx', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/x-www-form-urlencoded',
-  },
-  body: JSON.stringify({
-    grant_type: 'client_credentials',
-  })
-})
-  .then((res) => res.json())
-  .then((resJSON) => {
-    this.setState({ access_token: resJSON.access_token });
-    console.log(resJSON)
-  })
-  .then(() => {
-    fetch('https://api.yelp.com/v3/businesses/search?location=12345', {
-      method: 'GET',
-      headers: {
-        'authorization': 'Bearer ' + this.state.access_token
-      }
-    })
-    .then((res) => res.json())
-    .then((resJSON) => {
-      console.log('resJSON', resJSON)
-    })
-  })
-  .catch((err) => {
-    console.log('err', err);
-  })
-=======
-    var cors = "https://cors-everywhere.herokuapp.com/"
-    var term = "restaurant";
-    var limit = 1;
-    var lattitude = 30.23;
-    var longitude = -97.78;
-    var radius = 50;
-    open_now = true;
-    var queryURL = "https://developers.zomato.com/api/v2.1/search?q=" + term + "&lat=" + lattitude + "&lon=" + longitude + "&radius=" + radius;
-
-     // "&limit=" + limit + "&lattitude=" + lattitude + "&longitude=" + longitude + "&radius=" + radius + "&open_now=" + open_now;
+    // restaurants.orderByChild("id").equalTo("1111").on("child_added", function(data) {
+    //   var content = data.val().id;
+    //   if (data != "") {
+    //     console.log("Data!")
+    //     console.log(data.key);
+    //   } else
+    //     console.log("No Data!") 
+       
+    // });
     
-    var userKey = "39142c85645680f9baf52da3fb0a95f1";
 
-	$.ajax({  
-		url: queryURL,
-		dataType: 'json',
-		async: true,
-		beforeSend: function(xhr){xhr.setRequestHeader('user-key', 
-	'39142c85645680f9baf52da3fb0a95f1');},
-		success: function(response) { console.log(response) } })
+    $("#submit-bid").on("click", function(event) {
+      event.preventDefault();
+      // Get the input values
+      id = $("#id-input").val().trim();
 
+      database.ref("restaurant").orderByChild("id").equalTo(id).once("child_added", function(data) {
+        content = data.val().id;
+        console.log("Content: " + content)
+        key = data.key;
+        
+      });
+      setTimeout(run, 500)
 
-    .then(function(response) {
-      console.log(response);
     });
->>>>>>> fdfcd38ad16f7a926d2cd24708556bf959b81535
+
+    function run() {
+      if (key === undefined){
+        recordData()
+      } else {
+        updateData()
+      }
+    }
+
+    function recordData() {
+        database.ref("restaurant").push({
+        id: id
+      })     
+    };
+
+    function updateData() {
+      database.ref("restaurant/" + key).update({
+        test: "worked"
+      })
+    };
+    
+
+
+
+
   </script>
 
 </body>

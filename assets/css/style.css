@@ -1,7 +1,8 @@
 body {
     background-image: url(images/congruent_pentagon/congruent_pentagon.png);
-    font-family: 'Rubik', sans-serif;
-
+    /* font-family: 'Rubik', sans-serif; */
+    /* font-weight: 550; */
+    letter-spacing: 1px;
 }
 #instructionsText{
 text-align: center;
@@ -22,17 +23,37 @@ text-align: center;
     margin: 10px;
 }
 
-iframe {
+.rStyle{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size:30px;
+}
+.lStyle{
+    font-family: 'Rubik', sans-serif;
+    font-weight: 500;
+    font-size:20px;
+}
+
+.center{
+    display:fles;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;}
+
+iframe{
     height: 100%;
     width: 100%;
     border: 0px;
 }
 
-#icons {
+}
+.icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 900px;
 }
 
 button {

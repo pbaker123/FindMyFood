@@ -16,7 +16,9 @@
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/uiLogic.js"></script>
-   
+    <link href="https://fonts.googleapis.com/css?family=Rubik:900" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+
 
 </head>
 
@@ -38,8 +40,8 @@
     </div>
     <div class="container">
         <div class="row" id="instructions">
-            <div class="col-md-3 col-lg-3"></div>
-            <div class="col-md-6 col-lg-6" id = "instructionsText">
+            <div class="col-md-2 col-lg-2"></div>
+            <div class="col-md-8 col-lg-8" id="instructionsText">
                 <h4>Welcome to Find My Food.</h4>
                 <p>The app for people who just can't decide what to eat</p>
                 <p>First, tell us your location.</p>
@@ -48,10 +50,10 @@
                 <p>Bon apetit!</p>
                 <button class="btn btn-primary" value="button text" id="start">Find My Food!</button>
             </div>
-            <div class="col-md-3 col-lg-3"></div>
+            <div class="col-md-2 col-lg-2"></div>
         </div>
 
-<!-- 
+        <!-- 
         <div class="row" id="iconPage">
 
             <div class="col-md-12 col-lg-12" id="icons">
@@ -74,33 +76,58 @@
 
 
         <div class="row" id="pageChoice">
-            <div class="col-md-2"></div>
 
-            <div class="col-md-8" id="icons">
-                    <div class="row" id="weather"></div>
-                    <div class="row" id="map"></div>
-                    <div class="row">
-                        <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
-                    </div>
-                    <div class="row">
-                        <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
-                    </div>
-                    <div class="row">
-                        <button id="car" class="fas fa-car content" data-mode="car"></button>
-                    </div>
-                    </div>
-            <div class="col-md-2"></div>
-                    
-                    </div>
-            <div class="row" id="restChoice">
 
-            <div class="col-md-12" id="restaurantChoice">
-                    <img id="restaurantImage" src="assets/css/images/example.png">
-         
+            <div class="col-md-12" class="icons">
+                <div class="row icons" id="weather"></div>
+                <div class="row icons" id="map"></div>
+            </div>
+            <!-- <div class="row"> -->
+            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
 
+
+                <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
+            </div>
+            <!-- <div class="row"> -->
+            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
+
+                <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
+            </div>
+            <!-- <div class="row"> -->
+            <div class="col-lg-4 col-md-12 col-sm-12 icons" style="float:left;">
+
+                <button id="car" class="fas fa-car content" data-mode="car"></button>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-md-12" id="restaurantName">
             </div>
 
-         
+
+        </div>
+        <div class="row">
+
+            <div class="col-md-12" id="restaurantMap">
+
+            </div>
+            <div class="row" id="restChoice">
+                <div class="col-md-12 center">
+                    <div class="icons rStyle" id="restaurantName"></div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-12 center">
+                    <div id="location" class="icons lStyle"></div>
+                </div>
+
+                <div id="thumbs">
+                    <button class="fas fa-thumbs-up vote" data-mode="thumbs-up">
+                        </i>
+                        <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
+                            </i>
+                </div>
         </div>
         <div class="row">
             <div class="col-md-2"></div>
@@ -110,7 +137,7 @@
             <div class="col-md-2"></div>
         </div>
 
-        
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -130,10 +157,9 @@
             </div>
         </div>
     </div>
-    
-    <script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
-    async defer></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
+        async defer></script>
     <script src="assets/javascript/app.js"></script>
     <script src="assets/javascript/weather.js"></script>
     <script src="assets/javascript/test.js"></script>

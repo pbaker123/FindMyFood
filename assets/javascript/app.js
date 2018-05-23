@@ -8,6 +8,10 @@ var previousRestaurantName;
 var workingSnapshot;
 var thumbsUpTotal = 0;
 var thumbsDownTotal = 0;
+var key;
+var content;
+var vote;
+
   
 // Initialize Firebase
 var config = {
@@ -20,7 +24,8 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
+ 
+var database = firebase.database();
 // initial Gmap call with our api.  Take a look at this example: https://developers.google.com/maps/documentation/javascript/examples/map-simple
 
 function initMap() {
@@ -38,9 +43,6 @@ function initMap() {
           lng: position.coords.longitude
         };
         weather()
-        // $("#location").html("your location is lat: " + pos.lat + " long: " + pos.lng);
-        // console.log(pos.lat);
-        // console.log(pos.lng);
       }, function() {
         handleLocationError(true);
       });
@@ -73,6 +75,10 @@ function callback(results, status) {
     var index = Math.floor(Math.random() * results.length);
     var restaurantName = results[index].name;
     var restaurantLocation = results[index].vicinity;
+    console.log("Name: " + restaurantName + " | Location: " + restaurantLocation);
+    $( "#restaurantName").html(restaurantName);
+    $( "#location").html(restaurantLocation);
+
     var currentRestaurantId = results[index].id;
     var currentRestaurantName = results[index].name;
     localStorage.setItem("id", currentRestaurantId);
@@ -90,43 +96,76 @@ function vote() {
   localStorage.setItem("id", "");
   localStorage.setItem("name", "");
   console.log("previous: " + previousRestaurantName)
-  idLookUp()
+  hideAll()
+  $("#thumbs").show();
+  
+  // hide other divs
+  // show vote div
 };
 
 
 
 
-
-// on click { if thumbs up make object {id, name, thumbs up, thumbs down} send this object to firebase, if it already exists get the number of thumbs up/down and increase the approriate one. if thumbs down __ else } 
-
-database.ref().on("value", function(snapshot) {
-  workingSnapshot = snapshot.val();
-  console.log(workingSnapshot)
+$(".vote").on("click", function(event) {
+  vote = $(this).attr("data-mode")
+  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
+    key = data.key;
+  });
+  setTimeout(run, 500)
 });
 
-$(".vote").on("click", function() {
-  var vote = $(this).attr("data-mode");
-
-  if (vote === "thumbs-up") {
-    thumbsUpTotal++;
-    var voted = {
-      id: previousRestaurantId,
-      name: previousRestaurantName,
-      thumbsUp: thumbsUpTotal
-    };
-    initMap()
-  } else if (vote === "thumbs-down") {
-    thumbsUpTotal
-    var voted = {
-      id: previousRestaurantId,
-      name: previousRestaurantName,
-      thumbsDown: thumbsDownTotal
-    };
-    initMap()
+function run() {
+  console.log(key)
+  if (key === undefined){
+    recordData()
   } else {
+    updateData()
+  }
+};
+
+function recordData() {
+  if (vote === "thumbs-up") {
+    thumbsUpTotal++
+    database.ref("restaurant").push({
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsUp: thumbsUpTotal,
+      thumbsDown: thumbsDownTotal
+    })
+    initMap() 
+  } else if (vote === "thumbs-down") {
+    thumbsDownTotal++
+    database.ref("restaurant/" + key).update({
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsUp: thumbsUpTotal,
+      thumbsDown: thumbsDownTotal
+    })
     initMap()
   }
-});
+};
+
+function updateData() {
+  if (vote === "thumbs-up") {
+    thumbsUpTotal++
+    database.ref("restaurant/" + key).update({
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsUp: thumbsUpTotal,
+      thumbsDown: thumbsDownTotal
+    })
+    initMap()
+  } else if (vote === "thumbs-down") {
+    thumbsDownTotal++
+    database.ref("restaurant/" + key).update({
+      id: previousRestaurantId,
+      name: previousRestaurantName,
+      thumbsUp: thumbsUpTotal,
+      thumbsDown: thumbsDownTotal
+    })
+    initMap()
+  }
+};
 
 $(".content").on("click", function(){
   var mode = $(this).attr("data-mode");
