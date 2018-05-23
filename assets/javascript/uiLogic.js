@@ -16,27 +16,29 @@ $( document ).ready( function () {
     // $( "#pageChoice" ).hide();
     // $( "#instructions" ).show();
     hideAll();
-    timeCheck();
+    localStorage.setItem('waiting',false);
+    // timeCheck();
 
     if ( localStorage.getItem( 'waiting' ) == 'false' ) {
 
 
         console.log( "UI engaged" );
         hideAll();
-        page1();
+        $( "#loadingSplash" ).show();
+        setTimeout(page1,3000);
         $( "#start" ).on( "click", function () {
             hideAll();
             load();
             // $( "#loadingSplash" ).show();
             // debugger;
-            setTimeout( page2, 1000 );
+            setTimeout( page2, 2000 );
 
         } );
 
         $( ".content" ).on( "click", function () {
             hideAll();
             load();
-            setTimeout( page3, 100 );
+            setTimeout( page3, 5000 );
         } );
     }
     else {
@@ -48,6 +50,10 @@ $( document ).ready( function () {
 
 
 function hideAll() {
+    $( "#restaurantMap" ).hide();
+    $( "#restaurantName" ).hide();
+
+    $(" #thumbs").hide();
     $( "#restaurantChoice" ).hide();
     $( ".jumbotron" ).hide();
     $( "#pageChoice" ).hide();
@@ -62,6 +68,9 @@ function load() {
 
 function page3() {
     waiting = true;
+    $ ("#loadingSplash").hide();
+    $( "#restaurantName" ).show();
+    $( "#restaurantMap" ).show();
     $ ("#thumbs").hide();
     $( ".jumbotron" ).show();
     $( "#loadingSplash" ).hide();
@@ -75,7 +84,7 @@ function page3() {
 function timeSetter() {
     currentTime = moment().format( "HH:mm" );
     localStorage.setItem( "time", currentTime );
-    clearTime = moment( currentTime, 'HH:mm:ss' ).add( 1, 'minutes' ).format( 'HH:mm' );
+    clearTime = moment( currentTime, 'HH:mm:ss' ).add( -1, 'minutes' ).format( 'HH:mm' );
     localStorage.setItem( "clearTime", clearTime );
     localStorage.setItem( 'waiting', waiting );
 }
@@ -91,6 +100,8 @@ function page2() {
     timeSetter();
 }
 function page1() {
+    $( "#loadingSplash" ).hide();
+
     $( ".jumbotron" ).show();
     $( "#instructions" ).show();
 
