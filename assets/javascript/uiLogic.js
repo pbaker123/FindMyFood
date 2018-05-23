@@ -16,8 +16,13 @@ $( document ).ready( function () {
     // $( "#pageChoice" ).hide();
     // $( "#instructions" ).show();
     hideAll();
+<<<<<<< HEAD
     localStorage.setItem('waiting',false);
     // timeCheck();
+=======
+    // timeCheck();
+    localStorage.setItem("waiting", "false")
+>>>>>>> 2ceaaf8617ccb935d2eb49903c3c1c4c8bdc8d1b
 
     if ( localStorage.getItem( 'waiting' ) == 'false' ) {
 
