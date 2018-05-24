@@ -1,5 +1,6 @@
 body {
-    background-image: url(images/congruent_pentagon/congruent_pentagon.png);
+    color: white;
+    background-color:black;
     /* font-family: 'Rubik', sans-serif; */
     /* font-weight: 550; */
     letter-spacing: 1px;
@@ -119,13 +120,7 @@ button {
       
   }
   .jumbotron {
-
-      font-weight: bolder;
-      background-image: url(images/food2.jpg);
-      color: white;
-      text-shadow: 4px 2px #000000;
-      font-family: 'Anton', sans-serif;
-      letter-spacing: 2px;
+    background-color: black;
   }
 
   .my {
@@ -190,7 +185,7 @@ button {
 
 
 #loading{
-    background-color:white;
+    background-color:black;
 }
 #loadGif{
     height:100%;
@@ -203,6 +198,11 @@ button {
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     border-radius: 50px;
+}
+
+.titleIMG {
+    max-width: 100%;
+    height: auto;
 }
 
 
