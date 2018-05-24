@@ -12,6 +12,7 @@ var key;
 var content;
 var vote;
 
+
   
 // Initialize Firebase
 var config = {
@@ -45,12 +46,18 @@ function initMap() {
         weather()
       }, function() {
         handleLocationError(true);
-        alert("no geo!");
+          // $("#addressPop").modal("toggle");
+          // console.log(error);
+          // var geocoder = new google.maps.Geocoder();
+          $("#addressPop").modal("toggle");
+          var address = $("#zipCode").val().trim();
+         console.log(address);
+         return;
       });
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false);
-      //alert("no geo!");
+      // alert("geo no!");
     }
   }
 };
@@ -105,28 +112,24 @@ function vote() {
   // show vote div
 };
 
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//                         'Error: The Geolocation service failed.' :
-//                         'Error: Your browser doesn\'t support geolocation.');
-//   infoWindow.open(map);
-// }
 
 function handleLocationError(error) {
-  console.log(error);
-  switch (error.code) {
-    case 3:
-      // ...deal with timeout
-      break;
-    case 2:
-      // ...device can't get data
-      break;
-    case 1:
-      // ...user said no ☹️
-  }
+  // console.log(error);
+  // var geocoder = new google.maps.Geocoder();
+  // $("#addressPop").modal("toggle");
+  // var address = $("#zipCode").val().trim();
+  // console.log(address);
+  // geocoder.zipCode( { 'address': address}, function(pos, status) {
+  //   if (status == google.maps.GeocoderStatus.OK) {
+  //      lat = pos[0].geometry.location.lat();
+  //      pos.push(lat);
+  //      lng = pos[0].geometry.location.lng();
+  //      pos.push(lng);
+  //   } else {
+  //     alert("Geocode was not successful for the following reason: " + status);
+  //   }
+  // });
 }
-
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")

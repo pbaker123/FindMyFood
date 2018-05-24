@@ -10,19 +10,19 @@
         crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Anton|Rubik" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
         crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="assets/javascript/uiLogic.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Rubik:900" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
-
-
 </head>
 
-<body id="body">
+<body>
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4 header">
@@ -48,7 +48,7 @@
                 <p>Next, select your mode of transportation: Walking, Biking, or Driving.</p>
                 <p>Find My Food will then show you where to eat your next meal.</p>
                 <p>Bon apetit!</p>
-                <button class="btn btn-primary hvr-grow" value="button text" id="start">Find My Food!</button>
+                <button class="btn btn-primary" value="button text" id="start">Find My Food!</button>
             </div>
             <div class="col-md-2 col-lg-2"></div>
         </div>
@@ -77,60 +77,39 @@
 
         <div class="row" id="pageChoice">
 
-<<<<<<< HEAD
-=======
+            <div class="col-md-8" id="icons">
+                    <div class="row" id="weather"></div>
+                    <div class="row" id="map"></div>
+                    <div class="row">
+                        <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
+                    </div>
+                    <div class="row">
+                        <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
+                    </div>
+                    <div class="row">
+                        <button id="car" class="fas fa-car content" data-mode="car"></button>
+                    </div>
+                    </div>
+            <div class="col-md-2"></div>
+                    
+                    </div>
+            <div class="row">
 
->>>>>>> 2ceaaf8617ccb935d2eb49903c3c1c4c8bdc8d1b
-            <div class="col-md-12" class="icons">
-                <div class="row icons" id="weather"></div>
-                <div class="row icons" id="map"></div>
+            <div class="col-md-12" id="restaurantName">
             </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
 
-
-                <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
-            </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
-
-                <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
-            </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12 col-sm-12 icons" style="float:left;">
-
-                <button id="car" class="fas fa-car content" data-mode="car"></button>
-            </div>
+         
         </div>
         <div class="row">
 
-            <div class="col-md-12 icons lStyle" id="restaurantName">
+            <div class="col-md-12" id="restaurantMap">
             </div>
+
+
+
 
 
         </div>
-        <div class="row">
-
-            <div class="col-md-12"  >
-
-
-            <div id="restaurantMap" ></div>
-
-            </div>
-            <div class="row" id="restChoice">
-                <div class="col-md-12 center">
-                    <div class="icons rStyle" id="restaurantName"></div>
-                </div>
-            </div>
-
-
-                <div id="thumbs">
-                    <button class="fas fa-thumbs-up vote" data-mode="thumbs-up">
-                        </i>
-                        <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
-                            </i>
-                </div>
-        
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -154,8 +133,29 @@
         <div class="col-md-12" id="loading">
             <div>
 
-                <img id= "loadGif"  class="img-fluid" src="assets/css/images/invert.gif">
+                <img id="loadGif" src="assets/css/images/loader-2_food.gif">
 
+            </div>
+        </div>
+    </div>
+
+    <!--modal for zip-->
+    <div class="modal fade" id="addressPop" tabindex="-1" role="dialog" aria-labelledby="addressLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addressLabel">Address Entry</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <p>You gotta give us something! How about your zip code?</p>
+                            <label for="address-name" class="col-form-label">Zip Code:</label>
+                            <input type="text" class="form-control" id="zipCode">
+                        </div>
+                        <button type="submit" id="zipcodebtn" class="btn btn-primary" value="geocode">Send</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
