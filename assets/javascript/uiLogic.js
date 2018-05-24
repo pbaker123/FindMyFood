@@ -5,59 +5,9 @@ var currentTime;
 var clearTime;
 var waiting = false;
 
-$( document ).ready( function () {
-    console.log( "ready!" );
-
-
-
-
-    // $( "#loadingSplash" ).hide();
-    // $( "#iconPage" ).hide();
-    // $( "#pageChoice" ).hide();
-    // $( "#instructions" ).show();
-    hideAll();
-<<<<<<< HEAD
-    localStorage.setItem('waiting',false);
-    // timeCheck();
-=======
-    // timeCheck();
-    localStorage.setItem("waiting", "false")
->>>>>>> 2ceaaf8617ccb935d2eb49903c3c1c4c8bdc8d1b
-
-    if ( localStorage.getItem( 'waiting' ) == 'false' ) {
-
-
-        console.log( "UI engaged" );
-        hideAll();
-        $( "#loadingSplash" ).show();
-        setTimeout(page1,3000);
-        $( "#start" ).on( "click", function () {
-            hideAll();
-            load();
-            // $( "#loadingSplash" ).show();
-            // debugger;
-            setTimeout( page2, 2000 );
-
-        } );
-
-        $( ".content" ).on( "click", function () {
-            hideAll();
-            load();
-            setTimeout( page3, 5000 );
-        } );
-    }
-    else {
-        hideAll();
-        page3();
-    }
-} );
-
-
-
 function hideAll() {
     $( "#restaurantMap" ).hide();
     $( "#restaurantName" ).hide();
-
     $(" #thumbs").hide();
     $( "#restaurantChoice" ).hide();
     $( ".jumbotron" ).hide();
@@ -66,6 +16,7 @@ function hideAll() {
     $( "#instructions" ).hide();
     $( "#restChoice" ).hide();
 }
+
 function load() {
     $( "#loadingSplash" ).show();
 
@@ -106,7 +57,6 @@ function page2() {
 }
 function page1() {
     $( "#loadingSplash" ).hide();
-
     $( ".jumbotron" ).show();
     $( "#instructions" ).show();
 

@@ -34,6 +34,8 @@ function initMap() {
     vote()
   } else {
     // Try HTML5 geolocation.
+    hideAll()
+    load()
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         origin = position;
@@ -42,6 +44,7 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        page1()
         weather()
       }, function() {
         handleLocationError(true);
@@ -166,16 +169,31 @@ $(".content").on("click", function(){
   if (mode === "walking"){
     setRadius = 1609;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "bicycle"){
     setRadius = 8046;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "car"){
     setRadius = 16093;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }      
+});
+
+$("#start").on("click", function() {
+  hideAll();
+  load();
+  setTimeout(page2, 2000);
 });
