@@ -16,13 +16,8 @@ $( document ).ready( function () {
     // $( "#pageChoice" ).hide();
     // $( "#instructions" ).show();
     hideAll();
-<<<<<<< HEAD
-    localStorage.setItem('waiting',false);
     // timeCheck();
-=======
-    // timeCheck();
-    localStorage.setItem("waiting", "false")
->>>>>>> 2ceaaf8617ccb935d2eb49903c3c1c4c8bdc8d1b
+    // localStorage.setItem("waiting", "false")
 
     if ( localStorage.getItem( 'waiting' ) == 'false' ) {
 
@@ -55,9 +50,9 @@ $( document ).ready( function () {
 
 
 function hideAll() {
+    $( "#restaurantNameRefresh" ).hide();
     $( "#restaurantMap" ).hide();
     $( "#restaurantName" ).hide();
-
     $(" #thumbs").hide();
     $( "#restaurantChoice" ).hide();
     $( ".jumbotron" ).hide();
@@ -68,6 +63,14 @@ function hideAll() {
 }
 function load() {
     $( "#loadingSplash" ).show();
+}
+
+function page4(){
+    hideAll();
+    $("#thumbs").show();
+    $(".jumbotron").show();
+    $( "#restaurantNameRefresh" ).show();
+    $("#restaurantNameRefresh").prepend("Last time you visited : " + previosRestaurantName);
 
 }
 
@@ -89,7 +92,7 @@ function page3() {
 function timeSetter() {
     currentTime = moment().format( "HH:mm" );
     localStorage.setItem( "time", currentTime );
-    clearTime = moment( currentTime, 'HH:mm:ss' ).add( -1, 'minutes' ).format( 'HH:mm' );
+    clearTime = moment( currentTime, 'HH:mm:ss' ).add( 1, 'minutes' ).format( 'HH:mm' );
     localStorage.setItem( "clearTime", clearTime );
     localStorage.setItem( 'waiting', waiting );
 }
@@ -105,8 +108,8 @@ function page2() {
     timeSetter();
 }
 function page1() {
+    $("#thumbs").hide();
     $( "#loadingSplash" ).hide();
-
     $( ".jumbotron" ).show();
     $( "#instructions" ).show();
 
@@ -116,9 +119,9 @@ function getCurrentTime() {
     console.log( "time updated: " + currentTime );
     console.log( "time to clear: " + localStorage.getItem( 'clearTime' ) );
     if ( currentTime > clearTime ) {
-        // waiting = false;
+        waiting = false;
         console.log( "rate now" );
-        // localStorage.getItem( 'waiting', waiting );
+        localStorage.getItem( 'waiting', waiting );
         $("#thumbs").show();
     }
 }
@@ -129,8 +132,8 @@ function timeCheck() {
     currentTime = moment().format( "HH:mm" );
     localStorage.setItem( 'time', currentTime );
     if ( localStorage.getItem( 'time' ) > localStorage.getItem( "clearTime" ) ) {
-        // waiting = false;
-        // localStorage.setItem( 'waiting', waiting );
+        waiting = false;
+        localStorage.setItem( 'waiting', waiting );
         $("#thumbs").show();
 
         return;

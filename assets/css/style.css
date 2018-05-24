@@ -11,6 +11,7 @@ font-size: 3vh;
 
 #loadingSplash{
     display:none;
+    background-color: Black;
 }
 #iconPage{
     display:none;
@@ -118,8 +119,9 @@ button {
       
   }
   .jumbotron {
+
       font-weight: bolder;
-      background-image: url(images/food.jpg);
+      background-image: url(images/food2.jpg);
       color: white;
       text-shadow: 4px 2px #000000;
       font-family: 'Anton', sans-serif;
