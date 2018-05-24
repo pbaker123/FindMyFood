@@ -1,106 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Find My Food</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-        crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Anton|Rubik" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-        crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="assets/javascript/uiLogic.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Rubik:900" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Find My Food</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+            crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Anton|Rubik" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+            crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <script src="assets/javascript/uiLogic.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Rubik:900" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    </head>
 
+    <body id="body">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4 header">
+                    <img src="assets/css/images/titlte3.jpg" class="titleIMG">
+                    <!-- <span class="first">F</span>
+                    <span class="second">I</span>
+                    <span class="third">N</span>
+                    <span class="fourth">D</span>
+                    <span class="my">MY</span>
+                    <span class="fourth">F</span>
+                    <span class="third">O</span>
+                    <span class="second">O</span>
+                    <span class="first">D</span> -->
+                </h1>
+            </div>
+        </div>
 
-</head>
-
-<body id="body">
-    <div class="jumbotron jumbotron-fluid">
         <div class="container">
-            <h1 class="display-4 header">
-                <img src="assets/css/images/titlte3.jpg" class="titleIMG">
-                <!-- <span class="first">F</span>
-                <span class="second">I</span>
-                <span class="third">N</span>
-                <span class="fourth">D</span>
-                <span class="my">MY</span>
-                <span class="fourth">F</span>
-                <span class="third">O</span>
-                <span class="second">O</span>
-                <span class="first">D</span> -->
-            </h1>
-        </div>
-    </div>
-
-    <div class="container">
-        
-        <!-- Page 1 Start -->
-        <div class="row" id="instructions">
-            <div class="col-md-2 col-lg-2"></div>
-            <div class="col-md-8 col-lg-8" id="instructionsText">
-                <h4>Welcome to Find My Food.</h4>
-                <p>The app for people who just can't decide what to eat</p>
-                <p>First, tell us your location.</p>
-                <p>Next, select your mode of transportation: Walking, Biking, or Driving.</p>
-                <p>Find My Food will then show you where to eat your next meal.</p>
-                <p>Bon apetit!</p>
-                <button class="btn btn-primary hvr-grow" value="button text" id="start">Find My Food!</button>
-            </div>
-            <div class="col-md-2 col-lg-2"></div>
-        </div>
-
-        <div class="row" id="pageChoice">
-            <div class="col-md-12" class="icons">
-                <div class="row icons" id="weather"></div>
-                <div class="row icons" id="map"></div>
-            </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
-
-
-                <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
-            </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
-
-                <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
-            </div>
-            <!-- <div class="row"> -->
-            <div class="col-lg-4 col-md-12 col-sm-12 icons" style="float:left;">
-
-                <button id="car" class="fas fa-car content" data-mode="car"></button>
-            </div>
-        </div>
-        <!-- Page 2 End -->
-
-
-        <!-- Page 3 Start -->
-        <div class="row">
-
-            <div class="col-md-12 icons lStyle" id="restaurantName">
+            
+            <!-- Page 1 Start -->
+            <div class="row" id="instructions">
+                <div class="col-md-2 col-lg-2"></div>
+                <div class="col-md-8 col-lg-8" id="instructionsText">
+                    <h4>Welcome to Find My Food.</h4>
+                    <p>The app for people who just can't decide what to eat</p>
+                    <p>First, tell us your location.</p>
+                    <p>Next, select your mode of transportation: Walking, Biking, or Driving.</p>
+                    <p>Find My Food will then show you where to eat your next meal.</p>
+                    <p>Bon apetit!</p>
+                    <button class="btn btn-primary hvr-grow" value="button text" id="start">Find My Food!</button>
+                </div>
+                <div class="col-md-2 col-lg-2"></div>
             </div>
 
-        </div>
-        <div class="row">
+            <div class="row" id="pageChoice">
+                <div class="col-md-12" class="icons">
+                    <div class="row icons" id="weather"></div>
+                    <div class="row icons" id="map"></div>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
 
-            <div class="col-md-12"  >
 
-                <div id="restaurantMap" ></div>
+                    <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-lg-4 col-md-12  col-sm-12 icons" style="float:left;">
 
-            </div>
-            <div class="row" id="restChoice">
-                <div class="col-md-12 center">
-                    <div class="icons rStyle" id="restaurantName"></div>
+                    <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
+                </div>
+                <!-- <div class="row"> -->
+                <div class="col-lg-4 col-md-12 col-sm-12 icons" style="float:left;">
+
+                    <button id="car" class="fas fa-car content" data-mode="car"></button>
                 </div>
             </div>
+            <!-- Page 2 End -->
+
+
+            <!-- Page 3 Start -->
+            <div class="row">
+
+                <div class="col-md-12 icons lStyle" id="restaurantName">
+                </div>
+
+            </div>
+            <div class="row">
+
+                <div class="col-md-12"  >
+
+                    <div id="restaurantMap" ></div>
+
+                </div>
+                <div class="row" id="restChoice">
+                    <div class="col-md-12 center">
+                        <div class="icons rStyle" id="restaurantName"></div>
+                    </div>
+                </div>
 
                 <!-- Vote Page Start -->
                 <div id="thumbs">
@@ -110,56 +108,54 @@
                         </i>
                 </div>
                 <div class="row" id="page4">
-                        <div class="col-md-12 center">
-                            <div class="icons rStyle" id="restaurantNameRefresh"></div>
-                        </div>
+                    <div class="col-md-12 center">
+                        <div class="icons rStyle" id="restaurantNameRefresh"></div>
                     </div>
+                </div>
         
         
-                        <div id="thumbs">
-                            <button class="fas fa-thumbs-up vote" data-mode="thumbs-up">
-                                </i>
-                                <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
-                                    </i>
-                        </div>
-        
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div id="thumbs">
+                    <button class="fas fa-thumbs-up vote" data-mode="thumbs-up">
+                        </i>
+                    <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
+                            </i>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
 
-            </div>
-                <div class="col-md-2"></div>
-            </div>
+                </div>
+                    <div class="col-md-2"></div>
+                </div>
 
-
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                </div>
+                    <div class="col-md-2"></div>
+                </div>
             </div>
-                <div class="col-md-2"></div>
+            <!-- Page 3 End -->
+
+        <!-- Start Loading Screen -->
+        <div class="row" id="loadingSplash">
+
+            <div class="col-md-12" id="loading">
+                <div>
+
+                    <img id= "loadGif"  class="img-fluid" src="assets/css/images/titleScaled.gif">
+
+                </div>
             </div>
         </div>
-        <!-- Page 3 End -->
+        <!-- End Loading Screen -->
 
-    <!-- Start Loading Screen -->
-    <div class="row" id="loadingSplash">
-
-        <div class="col-md-12" id="loading">
-            <div>
-
-                <img id= "loadGif"  class="img-fluid" src="assets/css/images/titleScaled.gif">
-
-            </div>
-        </div>
-    </div>
-    <!-- End Loading Screen -->
-
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
-        async defer></script>
-    <script src="assets/javascript/app.js"></script>
-    <script src="assets/javascript/weather.js"></script>
-    <script src="assets/javascript/test.js"></script>
-</body>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
+            async defer></script>
+        <script src="assets/javascript/app.js"></script>
+        <script src="assets/javascript/weather.js"></script>
+        <script src="assets/javascript/test.js"></script>
+    </body>
 
 </html>

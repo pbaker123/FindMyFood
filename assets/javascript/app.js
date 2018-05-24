@@ -11,7 +11,6 @@ var thumbsDownTotal = 0;
 var key;
 var content;
 var vote;
-
   
 // Initialize Firebase
 var config = {
@@ -125,23 +124,6 @@ function handleLocationError(error) {
     case 1:
       // ...user said no ☹️
   }
-}
-
-$(".vote").on("click", function(event) {
-  vote = $(this).attr("data-mode")
-  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
-    key = data.key;
-  });
-  setTimeout(run, 500)
-});
-
-function run() {
-  console.log(key)
-  if (key === undefined){
-    recordData()
-  } else {
-    updateData()
-  }
 };
 
 function recordData() {
@@ -221,3 +203,20 @@ $("#start").on("click", function() {
   load();
   setTimeout(page2, 2000);
 });
+
+$(".vote").on("click", function(event) {
+  vote = $(this).attr("data-mode")
+  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
+    key = data.key;
+  });
+  setTimeout(run, 500)
+});
+
+function run() {
+  console.log(key)
+  if (key === undefined){
+    recordData()
+  } else {
+    updateData()
+  }
+};
