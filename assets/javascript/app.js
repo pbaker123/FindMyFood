@@ -11,7 +11,7 @@ var thumbsDownTotal = 0;
 var key;
 var content;
 var vote;
-  
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD6x5BYfR2yV9_yS-pYsDZ8RrU7ef3U56o",
@@ -47,12 +47,11 @@ function initMap() {
         weather()
       }, function() {
         handleLocationError(true);
-        alert("no geo!");
       });
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false);
-      //alert("no geo!");
+      // alert("geo no!");
     }
   }
 };
@@ -104,25 +103,43 @@ function vote() {
   $("#thumbs").show();
 };
 
-// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-//   infoWindow.setPosition(pos);
-//   infoWindow.setContent(browserHasGeolocation ?
-//                         'Error: The Geolocation service failed.' :
-//                         'Error: Your browser doesn\'t support geolocation.');
-//   infoWindow.open(map);
-// }
-
 function handleLocationError(error) {
   console.log(error);
-  switch (error.code) {
-    case 3:
-      // ...deal with timeout
-      break;
-    case 2:
-      // ...device can't get data
-      break;
-    case 1:
-      // ...user said no ☹️
+  var geocoder = new google.maps.Geocoder();
+  $("#addressPop").modal("toggle");
+  var address = $("#zipCode").val().trim();
+  console.log(address);
+  geocoder.zipCode( { 'address': address}, function(pos, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+       lat = pos[0].geometry.location.lat();
+       pos.push(lat);
+       lng = pos[0].geometry.location.lng();
+       pos.push(lng);
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+  $("#zipcodebtn").on("click", function(){
+    hideAll();
+    load();
+    setTimeout(page2, 2000);
+   });
+}
+
+$(".vote").on("click", function(event) {
+  vote = $(this).attr("data-mode")
+  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
+    key = data.key;
+  });
+  setTimeout(run, 500)
+});
+
+function run() {
+  console.log(key)
+  if (key === undefined){
+    recordData()
+  } else {
+    updateData()
   }
 };
 
