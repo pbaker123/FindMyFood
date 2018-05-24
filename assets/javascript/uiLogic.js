@@ -5,53 +5,6 @@ var currentTime;
 var clearTime;
 var waiting = false;
 
-<<<<<<< HEAD
-$( document ).ready( function () {
-    console.log( "ready!" );
-
-
-
-
-    // $( "#loadingSplash" ).hide();
-    // $( "#iconPage" ).hide();
-    // $( "#pageChoice" ).hide();
-    // $( "#instructions" ).show();
-    hideAll();
-    // timeCheck();
-    // localStorage.setItem("waiting", "false")
-
-    if ( localStorage.getItem( 'waiting' ) == 'false' ) {
-
-
-        console.log( "UI engaged" );
-        hideAll();
-        $( "#loadingSplash" ).show();
-        setTimeout(page1,3000);
-        $( "#start" ).on( "click", function () {
-            hideAll();
-            load();
-            // $( "#loadingSplash" ).show();
-            // debugger;
-            setTimeout( page2, 2000 );
-
-        } );
-
-        $( ".content" ).on( "click", function () {
-            hideAll();
-            load();
-            setTimeout( page3, 5000 );
-        } );
-    }
-    else {
-        hideAll();
-        page3();
-    }
-} );
-
-
-
-=======
->>>>>>> 289f7e749a0f19159d43583df843a1c6aa402366
 function hideAll() {
     $( "#restaurantNameRefresh" ).hide();
     $( "#restaurantMap" ).hide();
