@@ -5,6 +5,7 @@ var currentTime;
 var clearTime;
 var waiting = false;
 
+<<<<<<< HEAD
 $( document ).ready( function () {
     console.log( "ready!" );
 
@@ -49,6 +50,8 @@ $( document ).ready( function () {
 
 
 
+=======
+>>>>>>> 289f7e749a0f19159d43583df843a1c6aa402366
 function hideAll() {
     $( "#restaurantNameRefresh" ).hide();
     $( "#restaurantMap" ).hide();
@@ -61,6 +64,7 @@ function hideAll() {
     $( "#instructions" ).hide();
     $( "#restChoice" ).hide();
 }
+
 function load() {
     $( "#loadingSplash" ).show();
 }

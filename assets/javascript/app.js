@@ -34,6 +34,8 @@ function initMap() {
     vote()
   } else {
     // Try HTML5 geolocation.
+    hideAll()
+    load()
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         origin = position;
@@ -42,13 +44,16 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        page1()
         weather()
       }, function() {
         handleLocationError(true);
+        alert("no geo!");
       });
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false);
+      //alert("no geo!");
     }
   }
 };
@@ -98,13 +103,29 @@ function vote() {
   console.log("previous: " + previousRestaurantName)
   hideAll()
   $("#thumbs").show();
-  
-  // hide other divs
-  // show vote div
 };
 
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(browserHasGeolocation ?
+//                         'Error: The Geolocation service failed.' :
+//                         'Error: Your browser doesn\'t support geolocation.');
+//   infoWindow.open(map);
+// }
 
-
+function handleLocationError(error) {
+  console.log(error);
+  switch (error.code) {
+    case 3:
+      // ...deal with timeout
+      break;
+    case 2:
+      // ...device can't get data
+      break;
+    case 1:
+      // ...user said no ☹️
+  }
+}
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")
@@ -172,16 +193,31 @@ $(".content").on("click", function(){
   if (mode === "walking"){
     setRadius = 1609;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "bicycle"){
     setRadius = 8046;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "car"){
     setRadius = 16093;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }      
+});
+
+$("#start").on("click", function() {
+  hideAll();
+  load();
+  setTimeout(page2, 2000);
 });

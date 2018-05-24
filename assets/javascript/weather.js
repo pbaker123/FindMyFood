@@ -1,8 +1,3 @@
-// var pos = {
-//             lat: 35,
-//             lng: 139
-//           };
-
 var weather = function() {
 	var api_key = "2ff3fe9c5bf754ee9c37979fef2c77ae";
 	var cors = "https://cors-everywhere.herokuapp.com/"
@@ -12,10 +7,9 @@ var weather = function() {
     	url: cors + queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response);
-        var weatherIcon = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+        var weatherIcon = "assets/images/" + response.weather[0].icon + ".png";
         var weatherDescription = response.weather[0].main;
-        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:120px"))
+        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:100px"))
         
     });
 };
