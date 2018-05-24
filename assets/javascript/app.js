@@ -48,10 +48,12 @@ function initMap() {
         weather()
       }, function() {
         handleLocationError(true);
+        alert("no geo!");
       });
     } else {
       // Browser doesn't support Geolocation
       handleLocationError(false);
+      //alert("no geo!");
     }
   }
 };
@@ -102,6 +104,28 @@ function vote() {
   hideAll()
   $("#thumbs").show();
 };
+
+// function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+//   infoWindow.setPosition(pos);
+//   infoWindow.setContent(browserHasGeolocation ?
+//                         'Error: The Geolocation service failed.' :
+//                         'Error: Your browser doesn\'t support geolocation.');
+//   infoWindow.open(map);
+// }
+
+function handleLocationError(error) {
+  console.log(error);
+  switch (error.code) {
+    case 3:
+      // ...deal with timeout
+      break;
+    case 2:
+      // ...device can't get data
+      break;
+    case 1:
+      // ...user said no ☹️
+  }
+}
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")

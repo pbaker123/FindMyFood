@@ -38,7 +38,10 @@
             </h1>
         </div>
     </div>
+
     <div class="container">
+        
+        <!-- Page 1 Start -->
         <div class="row" id="instructions">
             <div class="col-md-2 col-lg-2"></div>
             <div class="col-md-8 col-lg-8" id="instructionsText">
@@ -52,35 +55,10 @@
             </div>
             <div class="col-md-2 col-lg-2"></div>
         </div>
+        <!-- Page 1 End -->
 
-        <!-- 
-        <div class="row" id="iconPage">
-
-            <div class="col-md-12 col-lg-12" id="icons">
-                <div class="row" id="weather"></div>
-
-                <div class="row">
-                    <button id="walking" class="fas fa-walking content" data-mode="walking"></button>
-                </div>
-                <div class="row">
-                    <button id="bicycle" class="fas fa-bicycle content" data-mode="bicycle"></button>
-                </div>
-                <div class="row">
-                    <button id="car" class="fas fa-car content" data-mode="car"></button>
-                </div>
-
-            </div>
-
-
-        </div> -->
-
-
+        <!-- Page 2 Start -->
         <div class="row" id="pageChoice">
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 2ceaaf8617ccb935d2eb49903c3c1c4c8bdc8d1b
             <div class="col-md-12" class="icons">
                 <div class="row icons" id="weather"></div>
                 <div class="row icons" id="map"></div>
@@ -102,19 +80,21 @@
                 <button id="car" class="fas fa-car content" data-mode="car"></button>
             </div>
         </div>
+        <!-- Page 2 End -->
+
+
+        <!-- Page 3 Start -->
         <div class="row">
 
             <div class="col-md-12 icons lStyle" id="restaurantName">
             </div>
-
 
         </div>
         <div class="row">
 
             <div class="col-md-12"  >
 
-
-            <div id="restaurantMap" ></div>
+                <div id="restaurantMap" ></div>
 
             </div>
             <div class="row" id="restChoice">
@@ -123,32 +103,34 @@
                 </div>
             </div>
 
-
+                <!-- Vote Page Start -->
                 <div id="thumbs">
                     <button class="fas fa-thumbs-up vote" data-mode="thumbs-up">
                         </i>
-                        <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
-                            </i>
+                    <button class="fas fa-thumbs-down vote" data-mode="thumbs-down">
+                        </i>
                 </div>
+                <!-- Vote Page End -->
         
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
 
             </div>
-            <div class="col-md-2"></div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+                <div class="col-md-2"></div>
             </div>
-            <div class="col-md-2"></div>
+
+
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+            </div>
+                <div class="col-md-2"></div>
+            </div>
         </div>
+        <!-- Page 3 End -->
 
-
-    </div>
+    <!-- Start Loading Screen -->
     <div class="row" id="loadingSplash">
 
         <div class="col-md-12" id="loading">
@@ -159,6 +141,7 @@
             </div>
         </div>
     </div>
+    <!-- End Loading Screen -->
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&libraries=places&callback=initMap"
         async defer></script>
