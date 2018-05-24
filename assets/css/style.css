@@ -120,6 +120,7 @@ button {
       
   }
   .jumbotron {
+    padding: 0px;
     background-color: black;
   }
 
