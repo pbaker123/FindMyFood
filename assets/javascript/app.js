@@ -35,6 +35,8 @@ function initMap() {
     vote()
   } else {
     // Try HTML5 geolocation.
+    hideAll()
+    load()
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
         origin = position;
@@ -43,16 +45,10 @@ function initMap() {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        page1()
         weather()
       }, function() {
         handleLocationError(true);
-          // $("#addressPop").modal("toggle");
-          // console.log(error);
-          // var geocoder = new google.maps.Geocoder();
-          $("#addressPop").modal("toggle");
-          var address = $("#zipCode").val().trim();
-         console.log(address);
-         return;
       });
     } else {
       // Browser doesn't support Geolocation
@@ -107,28 +103,30 @@ function vote() {
   console.log("previous: " + previousRestaurantName)
   hideAll()
   $("#thumbs").show();
-  
-  // hide other divs
-  // show vote div
 };
 
 
 function handleLocationError(error) {
-  // console.log(error);
-  // var geocoder = new google.maps.Geocoder();
-  // $("#addressPop").modal("toggle");
-  // var address = $("#zipCode").val().trim();
-  // console.log(address);
-  // geocoder.zipCode( { 'address': address}, function(pos, status) {
-  //   if (status == google.maps.GeocoderStatus.OK) {
-  //      lat = pos[0].geometry.location.lat();
-  //      pos.push(lat);
-  //      lng = pos[0].geometry.location.lng();
-  //      pos.push(lng);
-  //   } else {
-  //     alert("Geocode was not successful for the following reason: " + status);
-  //   }
-  // });
+  console.log(error);
+  var geocoder = new google.maps.Geocoder();
+  $("#addressPop").modal("toggle");
+  var address = $("#zipCode").val().trim();
+  console.log(address);
+  geocoder.zipCode( { 'address': address}, function(pos, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+       lat = pos[0].geometry.location.lat();
+       pos.push(lat);
+       lng = pos[0].geometry.location.lng();
+       pos.push(lng);
+    } else {
+      alert("Geocode was not successful for the following reason: " + status);
+    }
+  });
+  $("#zipcodebtn").on("click", function(){
+    hideAll();
+    load();
+    setTimeout(page2, 2000);
+   });
 }
 
 $(".vote").on("click", function(event) {
@@ -197,16 +195,31 @@ $(".content").on("click", function(){
   if (mode === "walking"){
     setRadius = 1609;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "bicycle"){
     setRadius = 8046;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }
   else if (mode === "car"){
     setRadius = 16093;
     console.log(setRadius);
+    hideAll();
+    load();
+    setTimeout( page3, 5000 );
     getFood();
   }      
+});
+
+$("#start").on("click", function() {
+  hideAll();
+  load();
+  setTimeout(page2, 2000);
 });

@@ -5,54 +5,10 @@ var currentTime;
 var clearTime;
 var waiting = false;
 
-$( document ).ready( function () {
-    console.log( "ready!" );
-
-
-
-
-    // $( "#loadingSplash" ).hide();
-    // $( "#iconPage" ).hide();
-    // $( "#pageChoice" ).hide();
-    // $( "#instructions" ).show();
-    hideAll();
-    // timeCheck();
-    localStorage.setItem("waiting", "false")
-
-    if ( localStorage.getItem( 'waiting' ) == 'false' ) {
-
-
-        console.log( "UI engaged" );
-        hideAll();
-        $( "#loadingSplash" ).show();
-        setTimeout(page1,3000);
-        $( "#start" ).on( "click", function () {
-            hideAll();
-            load();
-            // $( "#loadingSplash" ).show();
-            // debugger;
-            setTimeout( page2, 2000 );
-
-        } );
-
-        $( ".content" ).on( "click", function () {
-            hideAll();
-            load();
-            setTimeout( page3, 5000 );
-        } );
-    }
-    else {
-        hideAll();
-        page3();
-    }
-} );
-
-
-
 function hideAll() {
+    $( "#restaurantNameRefresh" ).hide();
     $( "#restaurantMap" ).hide();
     $( "#restaurantName" ).hide();
-
     $(" #thumbs").hide();
     $( "#restaurantChoice" ).hide();
     $( ".jumbotron" ).hide();
@@ -61,8 +17,17 @@ function hideAll() {
     $( "#instructions" ).hide();
     $( "#restChoice" ).hide();
 }
+
 function load() {
     $( "#loadingSplash" ).show();
+}
+
+function page4(){
+    hideAll();
+    $("#thumbs").show();
+    $(".jumbotron").show();
+    $( "#restaurantNameRefresh" ).show();
+    $("#restaurantNameRefresh").prepend("Last time you visited : " + previosRestaurantName);
 
 }
 
@@ -84,7 +49,7 @@ function page3() {
 function timeSetter() {
     currentTime = moment().format( "HH:mm" );
     localStorage.setItem( "time", currentTime );
-    clearTime = moment( currentTime, 'HH:mm:ss' ).add( -1, 'minutes' ).format( 'HH:mm' );
+    clearTime = moment( currentTime, 'HH:mm:ss' ).add( 1, 'minutes' ).format( 'HH:mm' );
     localStorage.setItem( "clearTime", clearTime );
     localStorage.setItem( 'waiting', waiting );
 }
@@ -100,8 +65,8 @@ function page2() {
     timeSetter();
 }
 function page1() {
+    $("#thumbs").hide();
     $( "#loadingSplash" ).hide();
-
     $( ".jumbotron" ).show();
     $( "#instructions" ).show();
 
@@ -111,9 +76,9 @@ function getCurrentTime() {
     console.log( "time updated: " + currentTime );
     console.log( "time to clear: " + localStorage.getItem( 'clearTime' ) );
     if ( currentTime > clearTime ) {
-        // waiting = false;
+        waiting = false;
         console.log( "rate now" );
-        // localStorage.getItem( 'waiting', waiting );
+        localStorage.getItem( 'waiting', waiting );
         $("#thumbs").show();
     }
 }
@@ -124,8 +89,8 @@ function timeCheck() {
     currentTime = moment().format( "HH:mm" );
     localStorage.setItem( 'time', currentTime );
     if ( localStorage.getItem( 'time' ) > localStorage.getItem( "clearTime" ) ) {
-        // waiting = false;
-        // localStorage.setItem( 'waiting', waiting );
+        waiting = false;
+        localStorage.setItem( 'waiting', waiting );
         $("#thumbs").show();
 
         return;
