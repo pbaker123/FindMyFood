@@ -109,7 +109,6 @@ function handleLocationError(error) {
   $("#zipcodebtn").on("click", function(){
     var geocoder = new google.maps.Geocoder();
     var address = $("#zipCode").val().trim();
-    alert(address);
     console.log(address);
     geocoder.geocode({'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
@@ -120,7 +119,7 @@ function handleLocationError(error) {
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
-      alert(pos);
+      console.log(pos);
     });
     
     hideAll();
