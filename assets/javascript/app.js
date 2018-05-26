@@ -12,8 +12,6 @@ var key;
 var content;
 var vote;
 
-
-  
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyD6x5BYfR2yV9_yS-pYsDZ8RrU7ef3U56o",
@@ -105,24 +103,26 @@ function vote() {
   $("#thumbs").show();
 };
 
-
 function handleLocationError(error) {
   console.log(error);
-  var geocoder = new google.maps.Geocoder();
-  $("#addressPop").modal("toggle");
-  var address = $("#zipCode").val().trim();
-  console.log(address);
-  geocoder.zipCode( { 'address': address}, function(pos, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-       lat = pos[0].geometry.location.lat();
-       pos.push(lat);
-       lng = pos[0].geometry.location.lng();
-       pos.push(lng);
-    } else {
-      alert("Geocode was not successful for the following reason: " + status);
-    }
-  });
+  $("#zipcodemodal").modal("toggle");
   $("#zipcodebtn").on("click", function(){
+    var geocoder = new google.maps.Geocoder();
+    var address = $("#zipCode").val().trim();
+    alert(address);
+    console.log(address);
+    geocoder.geocode({'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        lat = results[0].geometry.location.lat();
+        pos.push(lat);
+        lng = results[0].geometry.location.lng();
+        pos.push(lng);
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+      alert(pos);
+    });
+    
     hideAll();
     load();
     setTimeout(page2, 2000);
@@ -223,3 +223,20 @@ $("#start").on("click", function() {
   load();
   setTimeout(page2, 2000);
 });
+
+$(".vote").on("click", function(event) {
+  vote = $(this).attr("data-mode")
+  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
+    key = data.key;
+  });
+  setTimeout(run, 500)
+});
+
+function run() {
+  console.log(key)
+  if (key === undefined){
+    recordData()
+  } else {
+    updateData()
+  }
+};

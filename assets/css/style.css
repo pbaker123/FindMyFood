@@ -183,7 +183,9 @@ button {
       width: 250px;
   } */
 
-
+.modal-content {
+    color: black;
+}
 
 #loading{
     background-color:black;
