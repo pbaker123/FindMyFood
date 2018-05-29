@@ -107,26 +107,32 @@ function handleLocationError(error) {
   console.log(error);
   $("#zipcodemodal").modal("toggle");
   $("#zipcodebtn").on("click", function(){
+    event.preventDefault();
     var geocoder = new google.maps.Geocoder();
     var address = $("#zipCode").val().trim();
     console.log(address);
     geocoder.geocode({'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         lat = results[0].geometry.location.lat();
-        pos.push(lat);
+        // pos.push(lat);
         lng = results[0].geometry.location.lng();
-        pos.push(lng);
+        // pos.push(lng);
+        pos = {
+          lat: lat,
+          lng: lng
+        };
+        $("#zipcodemodal").modal("toggle");
+        hideAll();
+        load();
+        weather()
+        setTimeout(page2, 2000);
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
       console.log(pos);
     });
-    
-    hideAll();
-    load();
-    setTimeout(page2, 2000);
-   });
-}
+  });
+};
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")
