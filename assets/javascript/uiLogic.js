@@ -27,7 +27,7 @@ function page4(){
     $("#thumbs").show();
     $(".jumbotron").show();
     $( "#restaurantNameRefresh" ).show();
-    $("#restaurantNameRefresh").prepend("Last time you visited : " + previosRestaurantName);
+    $("#restaurantNameRefresh").prepend("Last time you visited " + previousRestaurantName + "<br> Let us know what you thought.");
 
 }
 

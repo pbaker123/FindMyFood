@@ -82,6 +82,7 @@ function callback(results, status) {
     $( "#restaurantName").html(restaurantName);
     $( "#location").html(restaurantLocation);
 
+
     var currentRestaurantId = results[index].id;
     var currentRestaurantName = results[index].name;
     localStorage.setItem("id", currentRestaurantId);
@@ -96,11 +97,9 @@ function callback(results, status) {
 function vote() {
   previousRestaurantId = localStorage.getItem("id");
   previousRestaurantName = localStorage.getItem("name");
-  localStorage.setItem("id", "");
-  localStorage.setItem("name", "");
   console.log("previous: " + previousRestaurantName)
   hideAll()
-  $("#thumbs").show();
+  page4()
 };
 
 function handleLocationError(error) {
@@ -134,14 +133,6 @@ function handleLocationError(error) {
   });
 };
 
-$(".vote").on("click", function(event) {
-  vote = $(this).attr("data-mode")
-  database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
-    key = data.key;
-  });
-  setTimeout(run, 500)
-});
-
 function run() {
   console.log(key)
   if (key === undefined){
@@ -170,6 +161,8 @@ function recordData() {
       thumbsDown: thumbsDownTotal
     })
     initMap()
+  } else {
+    initMap();
   }
 };
 
@@ -191,6 +184,9 @@ function updateData() {
       thumbsUp: thumbsUpTotal,
       thumbsDown: thumbsDownTotal
     })
+    initMap()
+  }
+  else {
     initMap()
   }
 };
@@ -231,17 +227,10 @@ $("#start").on("click", function() {
 
 $(".vote").on("click", function(event) {
   vote = $(this).attr("data-mode")
+  localStorage.setItem("id", "");
+  localStorage.setItem("name", "");
   database.ref("restaurant").orderByChild("id").equalTo(previousRestaurantId).once("child_added", function(data) {
     key = data.key;
   });
   setTimeout(run, 500)
 });
-
-function run() {
-  console.log(key)
-  if (key === undefined){
-    recordData()
-  } else {
-    updateData()
-  }
-};
