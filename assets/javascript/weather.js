@@ -9,7 +9,7 @@ var weather = function() {
     }).then(function(response) {
         var weatherIcon = "assets/images/" + response.weather[0].icon + ".png";
         var weatherDescription = response.weather[0].main;
-        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:100px"))
+        $("#weather").html($("<img>").attr("src", weatherIcon).attr("title", weatherDescription).attr("style", "width:100px;height:100px").addClass("mb-5"))
         
     });
 };

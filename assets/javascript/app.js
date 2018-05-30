@@ -73,6 +73,11 @@ function getFood() {
   }, callback);
 };
 
+var currentRestaurantId;
+var up;
+var down;
+var id;
+
 function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     var index = Math.floor(Math.random() * results.length);
@@ -83,14 +88,33 @@ function callback(results, status) {
     $( "#location").html(restaurantLocation);
 
 
-    var currentRestaurantId = results[index].id;
+    currentRestaurantId = results[index].id;
     var currentRestaurantName = results[index].name;
     localStorage.setItem("id", currentRestaurantId);
     localStorage.setItem("name", currentRestaurantName);
+    history(currentRestaurantId)
     console.log("Name: " + restaurantName + " | Location: " + restaurantLocation)
     console.log(results[index])
     $("#restaurantName").text(restaurantName + " - " + restaurantLocation);
     $("#restaurantMap").html("<iframe class='embed-responsive-item' src='https://www.google.com/maps/embed/v1/place?key=AIzaSyAEnHfgL17CU3dvMKKGW9kOuRHLcYZ7EQ8&q=" + restaurantLocation + "'</iframe>");
+    history()
+  }
+};
+
+function history() {
+  console.log("ID: " + currentRestaurantId)
+  database.ref("restaurant").orderByChild("id").equalTo(currentRestaurantId).once("child_added", function(data) {
+    up = data.val().thumbsUp;
+    down = data.val().thumbsDown;
+  });
+  setTimeout(historySummary, 500)
+};
+
+function historySummary() {
+  if (up != undefined && down != undefined) {
+    $("#voteHistory").html("<h4>Our users have rated this restaurant with " + up + " thumbs up and " + down + " thumbs down!</h4>")
+  } else {
+    $("#voteHistory").html("<h4>Be our first user to try this restaurant!<h4>")
   }
 };
 

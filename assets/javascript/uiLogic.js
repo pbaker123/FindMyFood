@@ -16,6 +16,7 @@ function hideAll() {
     $( "#iconPage" ).hide();
     $( "#instructions" ).hide();
     $( "#restChoice" ).hide();
+    $("#voteHistory").hide();
 }
 
 function load() {
@@ -42,7 +43,8 @@ function page3() {
     $( "#iconPage" ).hide();
     $( "#restaurantChoice" ).show();
     $( "#restChoice" ).show();
-    setInterval( getCurrentTime, 10000 );
+    $("#voteHistory").show();
+    // setInterval( getCurrentTime, 10000 );
     // $( "#restaurantName").html(restaurantName);
     // $( "#location").html(restaurantLocation);
 }
