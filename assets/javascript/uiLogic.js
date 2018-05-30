@@ -17,6 +17,7 @@ function hideAll() {
     $( "#instructions" ).hide();
     $( "#restChoice" ).hide();
     $("#voteHistory").hide();
+    $("#no-go").hide();
 }
 
 function load() {
@@ -26,6 +27,7 @@ function load() {
 function page4(){
     hideAll();
     $("#thumbs").show();
+    $("#no-go").show();
     $(".jumbotron").show();
     $( "#restaurantNameRefresh" ).show();
     $("#restaurantNameRefresh").prepend("Last time you visited " + previousRestaurantName + "<br> Let us know what you thought.");
