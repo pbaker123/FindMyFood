@@ -29,10 +29,8 @@ var database = firebase.database();
 
 function initMap() {
   // if id exists in local storage do vote() else
-  if (localStorage.getItem("id") != "") {
-    vote()
-  } else {
-    // Try HTML5 geolocation.
+  if (localStorage.getItem("id") === "" || localStorage.getItem("id") === null) {
+     // Try HTML5 geolocation.
     hideAll()
     load()
     if (navigator.geolocation) {
@@ -53,6 +51,8 @@ function initMap() {
       handleLocationError(false);
       // alert("geo no!");
     }
+  } else {
+    vote()
   }
 };
     
